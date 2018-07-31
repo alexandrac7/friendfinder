@@ -1,0 +1,35 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Friend Finder Home Page</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://surveyjs.azureedge.net/1.0.35/survey.jquery.min.js"></script>
+</head>
+<body>
+
+
+ <div id="surveyContainer"></div>  
+ 
+ <script>
+ 
+ Survey.Survey.cssType = "bootstrap";
+
+var surveyJSON = {pages:[{name:"page1",elements:[{type:"text",name:"name",title:"Please enter your name:",isRequired:true,placeHolder:"Jon Snow"},{type:"text",name:"Link to Photo Image (Required)",isRequired:true},{type:"dropdown",name:"Question 1",title:"I'm a goth.",choices:[{value:"1",text:"(Strongly Disagree)"},"2","3","4",{value:"5",text:"(Strongly Agree)"}]},{type:"dropdown",name:"Question 2",title:"I'm fun at parties.",choices:[{value:"1",text:"(Strongly Disagree)"},"2","3","4",{value:"5",text:"(Strongly Agree)"}]},{type:"dropdown",name:"Question 3",title:"If my crush dared me to dye my hair eggplant, and seemed like they were serious, I would.",choices:[{value:"1",text:"(Strongly Agree)"},"2","3","4",{value:"5",text:"(Strongly Disagree)"}]}]}]}
+
+function sendDataToServer(survey) {
+    //send Ajax request to your web server.
+    alert("The results are:" + JSON.stringify(survey.data));
+}
+
+var survey = new Survey.Model(surveyJSON);
+$("#surveyContainer").Survey({
+    model: survey,
+    onComplete: sendDataToServer
+});
+ 
+ 
+ </script>
